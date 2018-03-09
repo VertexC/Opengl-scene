@@ -25,7 +25,7 @@ CC= g++
 # The flags that will be used to compile the object file.
 # If you want to debug your program,
 # you can add '-g' on the following line
-CFLAGS= -O3 -g -Wall -pedantic -DGL_GLEXT_PROTOTYPES
+CFLAGS= -std=c++0x -O3 -g -Wall -pedantic -DGL_GLEXT_PROTOTYPES
 
 # The name of the final executable 
 EXECUTABLE=scene
@@ -37,18 +37,18 @@ EXECUTABLE=scene
 LDFLAGS = -lGL -lglut -lGLEW -lXext -lX11 -lm
 
 # If you have other library files in a different directory add them here 
-INCLUDEFLAG= -I. -I$(INCLUDEDIR) -Idep/ -Idep/soil/include/
-LIBFLAG= -L$(LIBDIR) -Ldep/soil/lib
+INCLUDEFLAG= -I. -I$(INCLUDEDIR) -Idep/ -Idep/soil/include/ -Idep/include/
+LIBFLAG= -L$(LIBDIR) -Ldep/soil/lib -Ldep/assimp/lib
 # EXTRALIBFLAG = -L$(EXTRALIBDIR)
 # Don't touch this one if you don't know what you're doing 
 OBJECT= $(SOURCE:.cpp=.o)
 # EXTRAOBJECT= $(SOURCE:.cpp=.o)
 # Don't touch any of these either if you don't know what you're doing 
 all: $(OBJECT) depend
-	$(CC) $(CFLAGS) $(INCLUDEFLAG) $(LIBFLAG) $(OBJECT) -o $(EXECUTABLE) $(LDFLAGS) -lSOIL
+	$(CC) $(CFLAGS) $(INCLUDEFLAG) $(LIBFLAG) $(OBJECT) -o $(EXECUTABLE) $(LDFLAGS) -lSOIL -lassimp
 
 scene: $(OBJECT) depend
-	$(CC) $(CFLAGS) $(INCLUDEFLAG) $(LIBFLAG) $(OBJECT) -o $(EXECUTABLE)  $(LDFLAGS) -lSOIL
+	$(CC) $(CFLAGS) $(INCLUDEFLAG) $(LIBFLAG) $(OBJECT) -o $(EXECUTABLE)  $(LDFLAGS) -lSOIL -lassimp
 
 depend:
 	$(CC) -M $(SOURCE) > depend
