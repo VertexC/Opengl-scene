@@ -22,6 +22,7 @@ enum CameraMovement
 const GLfloat YAW = -90.0f;
 const GLfloat PITCH = 0.0f;
 const GLfloat ZOOM = 45.0f;
+const GLfloat MOVEMENTSPEED = 1.0f;
 class Camera
 {
   public:
@@ -38,7 +39,7 @@ class Camera
     GLfloat zoom;
 
     Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f), GLfloat yaw = YAW, GLfloat pitch = PITCH) 
-        : front(glm::vec3(0.0f, 0.0f, -1.0f)), zoom(ZOOM)
+        : front(glm::vec3(0.0f, 0.0f, -1.0f)), zoom(ZOOM), movementSpeed(MOVEMENTSPEED)
     {
         this->position = position;
         this->cameraUp = cameraUp;
@@ -47,9 +48,20 @@ class Camera
         this->updateCameraVectors();
     }
 
-    glm::mat4 GetViewMatrix()
+    glm::mat4 getViewMatrix()
     {
         return glm::lookAt(this->position, this->position + this->front, this->up);
+    }
+
+    void moveCamera(CameraMovement direction){
+        if(direction == FORWARD)
+            this->position += this->front * this->movementSpeed;
+        if(direction == BACKWARD)
+            this->position -= this->front * this->movementSpeed;
+        if(direction == LEFT)
+            this->position -= this->right * this->movementSpeed;
+        if(direction == RIGHT)
+            this->position += this->right * this->movementSpeed;
     }
 
   private:
