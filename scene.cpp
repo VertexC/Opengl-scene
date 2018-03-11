@@ -164,6 +164,18 @@ void keyboard(unsigned char key, int x, int y)
     case 'Q':
         exit(EXIT_SUCCESS);
         break;
+    case 'a':
+        camera.turnCamera(TURNLEFT);
+        break;
+    case 'd':
+        camera.turnCamera(TURNRIGHT);
+        break;
+    case 'w':
+        camera.turnCamera(TURNUP);
+        break;
+    case 's':
+        camera.turnCamera(TURNDOWN);
+        break;
     }
 }
 
@@ -172,10 +184,10 @@ void specialkey(int key, int x, int y)
     switch (key)
     {
     case GLUT_KEY_LEFT:
-        camera.moveCamera(LEFT);
+        camera.moveCamera(MOVELEFT);
         break;
     case GLUT_KEY_RIGHT:
-        camera.moveCamera(RIGHT);
+        camera.moveCamera(MOVERIGHT);
         break;
     case GLUT_KEY_UP:
         camera.moveCamera(FORWARD);
