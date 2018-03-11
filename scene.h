@@ -9,6 +9,8 @@
 #  include <GL/freeglut.h>
 #  include <GL/freeglut_ext.h>
 #endif  // __APPLE__
+#include "shader.h"
+#include "mycamera.h"
 #include "SOIL.h"
 #include "assimp/Importer.hpp"
 #include "assimp/scene.h"

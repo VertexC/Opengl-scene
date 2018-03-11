@@ -28,7 +28,7 @@ CC= g++
 CFLAGS= -std=c++0x -O3 -g -Wall -pedantic -DGL_GLEXT_PROTOTYPES
 
 # The name of the final executable 
-EXECUTABLE=scene
+EXECUTABLE=myscene
 
 # The basic library we are using add the other libraries you want to link
 # to your program here 
@@ -47,7 +47,7 @@ OBJECT= $(SOURCE:.cpp=.o)
 all: $(OBJECT) depend
 	$(CC) $(CFLAGS) $(INCLUDEFLAG) $(LIBFLAG) $(OBJECT) -o $(EXECUTABLE) $(LDFLAGS) -lSOIL -lassimp
 
-scene: $(OBJECT) depend
+myscene: $(OBJECT) depend
 	$(CC) $(CFLAGS) $(INCLUDEFLAG) $(LIBFLAG) $(OBJECT) -o $(EXECUTABLE)  $(LDFLAGS) -lSOIL -lassimp
 
 depend:
