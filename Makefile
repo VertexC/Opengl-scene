@@ -17,7 +17,7 @@ INCLUDEDIR=/usr/include/
 LIBDIR=/usr/lib
 # EXTRALIBDIR=./dep/
 # If you have more source files add them here 
-SOURCE= scene.cpp model.cpp
+SOURCE= scene.cpp
 
 # The compiler we are using 
 CC= g++

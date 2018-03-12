@@ -1,15 +1,19 @@
 #include <string.h>
 #include <iostream>
 #include "scene.h"
-
+#include "model.h"
 // window size
 GLint windowWidth = 512;
 GLint windowHeight = 512;
 float speed = 500;
 
-// Build and compile our shader program
+// shader program
 Shader *lampShader;
 Shader *lightingShader;
+Shader *moonShader;
+
+// model
+Model *moon;
 
 // Init the camera object
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
@@ -105,7 +109,7 @@ void display(void)
     glUniform3f(glGetUniformLocation(lightingShader->Program, "dirLight.ambient"), 0.05f, 0.05f, 0.05f);
     glUniform3f(glGetUniformLocation(lightingShader->Program, "dirLight.diffuse"), 0.4f, 0.4f, 0.4f);
     glUniform3f(glGetUniformLocation(lightingShader->Program, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
-    // Point light 
+    // Point light
     glUniform3f(glGetUniformLocation(lightingShader->Program, "pointLights[0].position"), pointLightPositions[0].x, pointLightPositions[0].y, pointLightPositions[0].z);
     glUniform3f(glGetUniformLocation(lightingShader->Program, "pointLights[0].ambient"), 0.05f, 0.05f, 0.05f);
     glUniform3f(glGetUniformLocation(lightingShader->Program, "pointLights[0].diffuse"), 0.8f, 0.8f, 0.8f);
@@ -113,7 +117,7 @@ void display(void)
     glUniform1f(glGetUniformLocation(lightingShader->Program, "pointLights[0].constant"), 1.0f);
     glUniform1f(glGetUniformLocation(lightingShader->Program, "pointLights[0].linear"), 0.09);
     glUniform1f(glGetUniformLocation(lightingShader->Program, "pointLights[0].quadratic"), 0.032);
-    // Point light 
+    // Point light
     glUniform3f(glGetUniformLocation(lightingShader->Program, "pointLights[1].position"), pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z);
     glUniform3f(glGetUniformLocation(lightingShader->Program, "pointLights[1].ambient"), 0.05f, 0.05f, 0.05f);
     glUniform3f(glGetUniformLocation(lightingShader->Program, "pointLights[1].diffuse"), 0.8f, 0.8f, 0.8f);
@@ -121,7 +125,7 @@ void display(void)
     glUniform1f(glGetUniformLocation(lightingShader->Program, "pointLights[1].constant"), 1.0f);
     glUniform1f(glGetUniformLocation(lightingShader->Program, "pointLights[1].linear"), 0.09);
     glUniform1f(glGetUniformLocation(lightingShader->Program, "pointLights[1].quadratic"), 0.032);
-    // Point light 
+    // Point light
     glUniform3f(glGetUniformLocation(lightingShader->Program, "pointLights[2].position"), pointLightPositions[2].x, pointLightPositions[2].y, pointLightPositions[2].z);
     glUniform3f(glGetUniformLocation(lightingShader->Program, "pointLights[2].ambient"), 0.05f, 0.05f, 0.05f);
     glUniform3f(glGetUniformLocation(lightingShader->Program, "pointLights[2].diffuse"), 0.8f, 0.8f, 0.8f);
@@ -173,23 +177,19 @@ void display(void)
     }
     glBindVertexArray(0);
 
-    // // Also draw the lamp object, again binding the appropriate shader
-    // lampShader->Use();
-    // // Get location objects for the matrices on the lamp shader (these could be different on a different shader)
-    // modelLoc = glGetUniformLocation(lampShader->Program, "model");
-    // viewLoc = glGetUniformLocation(lampShader->Program, "view");
-    // projLoc = glGetUniformLocation(lampShader->Program, "projection");
-    // // Set matrices
-    // glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-    // glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-    // model = glm::mat4();
-    // model = glm::translate(model, lightPos);
-    // model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
-    // glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-    // // Draw the light object (using light's vertex attributes)
-    // glBindVertexArray(lightVAO);
-    // glDrawArrays(GL_TRIANGLES, 0, 36);
-    // glBindVertexArray(0);
+    moonShader->Use(); // <-- Don't forget this one!
+    // Transformation matrices
+    // glm::mat4 projection = glm::perspective(camera.zoom, (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
+    // glm::mat4 view = camera.getViewMatrix();
+    glUniformMatrix4fv(glGetUniformLocation(moonShader->Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+    glUniformMatrix4fv(glGetUniformLocation(moonShader->Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+
+    // Draw the loaded model
+    // glm::mat4 model;
+    model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+    model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));       // It's a bit too big for our scene, so scale it down
+    glUniformMatrix4fv(glGetUniformLocation(moonShader->Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+    moon->Draw(*moonShader);
 
     glutSwapBuffers();
 }
@@ -347,6 +347,9 @@ int main(int argc, char **argv)
 
     lightingShader = new Shader("./shader/lighting.vs", "./shader/lighting.frag");
     lampShader = new Shader("./shader/lamp.vs", "./shader/lamp.frag");
+    moonShader = new Shader("./shader/moon.vs", "./shader/moon.frag");
+
+    moon = new Model("./asset/ironman/nanosuit.obj");
     init();
 
     glutDisplayFunc(display);
@@ -358,6 +361,7 @@ int main(int argc, char **argv)
     glutMainLoop();
 
     delete lightingShader;
-    // delete lampShader;
+    delete lampShader;
+    delete moonShader;
     return 0;
 }
