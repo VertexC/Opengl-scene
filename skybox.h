@@ -81,6 +81,7 @@ class Skybox
             1.0f, -1.0f, -1.0f,
             -1.0f, -1.0f, 1.0f,
             1.0f, -1.0f, 1.0f};
+            
         glGenVertexArrays(1, &this->VAO);
         glGenBuffers(1, &this->VBO);
         glBindVertexArray(this->VAO);
