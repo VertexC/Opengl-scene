@@ -197,4 +197,4 @@ scene.o: scene.cpp /usr/include/stdc-predef.h /usr/include/string.h \
  dep/assimp/include/assimp/metadata.h \
  dep/assimp/include/assimp/postprocess.h dep/glm/gtc/type_ptr.hpp \
  dep/glm/gtc/../gtc/quaternion.hpp dep/glm/gtc/../gtc/quaternion.inl \
- dep/glm/gtc/type_ptr.inl model.h mesh.h
+ dep/glm/gtc/type_ptr.inl model.h mesh.h skybox.h
