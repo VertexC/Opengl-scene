@@ -39,8 +39,6 @@ class Shader
         }
         const GLchar *vShaderCode = vertexCode.c_str();
         const GLchar *fShaderCode = fragmentCode.c_str();
-        // std::cout << vShaderCode << std::endl;
-        // std::cout << fShaderCode << std::endl;
         // compile shaders
         GLuint vertex, fragment;
         GLint success;
@@ -68,7 +66,7 @@ class Shader
             std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n"
                       << infoLog << std::endl;
         }
-        // Shader program
+        // shader program
         this->Program = glCreateProgram();
         glAttachShader(this->Program, vertex);
         glAttachShader(this->Program, fragment);
@@ -80,7 +78,7 @@ class Shader
             std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n"
                       << infoLog << std::endl;
         }
-        // Delete the shaders
+        // delete the shaders
         glDeleteShader(vertex);
         glDeleteShader(fragment);
     }

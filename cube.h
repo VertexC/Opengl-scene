@@ -56,7 +56,7 @@ class Cube
         for (GLuint i = 0; i < 10; i++)
         {
             cubeModel = glm::mat4();
-            GLfloat angle = 20.0f * i;
+            GLfloat angle = 20.0f * i;   
             cubeModel = glm::translate(cubeModel, cubePositions[i] + this->cubeCenter);
             cubeModel = glm::rotate(cubeModel, angle, glm::vec3(1.0f, 0.3f, 0.5f));
             cubeModel = glm::scale(cubeModel, (GLfloat)(10 - i) * this->cubeScale / 10.0f);
@@ -137,14 +137,14 @@ class Cube
     void setMetrial()
     {
         this->shader->Use();
-        // Positions of the point lights
+        // position of light points
         glm::vec3 pointLightPositions[] = {
             glm::vec3(20.0f, -6.0f, 80.0f),
             glm::vec3(-4.0f, -30.0f, -40.0f),
             glm::vec3(10.0f, -2.0f, 64.0f),
             glm::vec3(3.0f, 0.0f, 64.0f)};
 
-        // Set material properties
+        // set material properties
         glUniform1f(glGetUniformLocation(this->shader->Program, "material.shininess"), 16.0f);
 
         glUniform3f(glGetUniformLocation(this->shader->Program, "dirLight.direction"), -0.2f, -1.0f, -0.3f);

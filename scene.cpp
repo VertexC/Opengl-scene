@@ -18,7 +18,8 @@ Shader *skyboxShader;
 // model
 Skybox *skybox;
 Cube *cube;
-// Init the camera object
+
+// camera
 Camera camera(glm::vec3(2.41841f, -0.174057f, 40.0417f));
 
 // texture
@@ -29,36 +30,39 @@ void display(void)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glDepthMask(GL_FALSE);
-
+    // set uniform attribute
     skyboxShader->Use();
     glm::mat4 skyboxProjection = glm::perspective(camera.zoom, (float)windowWidth / (float)windowHeight, 0.1f, 100.0f);
     glm::mat4 skyboxView = glm::mat4(glm::mat3(camera.getViewMatrix()));
     glUniformMatrix4fv(glGetUniformLocation(skyboxShader->Program, "projection"), 1, GL_FALSE, glm::value_ptr(skyboxProjection));
     glUniformMatrix4fv(glGetUniformLocation(skyboxShader->Program, "view"), 1, GL_FALSE, glm::value_ptr(skyboxView));
-    // Draw skybox
+    // draw skybox
     skybox->Draw(*skyboxShader);
 
     glDepthMask(GL_TRUE);
 
+    // set uniform attribute
     cubeShader->Use();
     GLint viewPosLoc = glGetUniformLocation(cubeShader->Program, "viewPos");
     glUniform3f(viewPosLoc, camera.position.x, camera.position.y, camera.position.z);
     glUniform3f(glGetUniformLocation(cubeShader->Program, "cameraPos"), camera.position.x, camera.position.y, camera.position.z);
-    // Create camera transformations
+
     glm::mat4 view = camera.getViewMatrix();
     glm::mat4 projection = glm::perspective(camera.zoom, (GLfloat)windowWidth / (GLfloat)windowHeight, 0.1f, 100.0f);
     glUniformMatrix4fv(glGetUniformLocation(cubeShader->Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(glGetUniformLocation(cubeShader->Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+    // draw cubes
     cube->Draw(skybox);
+
     glutSwapBuffers();
 }
 
 void init(void)
 {
-
+    // turn on depth test
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-
+    
     skybox->setup();
 
     cube->setup();
@@ -196,5 +200,8 @@ int main(int argc, char **argv)
 
     delete cubeShader;
     delete skyboxShader;
+    delete cube;
+    delete skybox;
+
     return 0;
 }

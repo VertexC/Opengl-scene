@@ -59,6 +59,7 @@ make
 #### Tricks
 ##### SOIL
 homepage: http://www.lonesock.net/soil.html
+
 download the latest version
 ```bash
 # in soil/Simple OpenGL Image Library/projects/makefile
