@@ -5,12 +5,22 @@
 #include "shader.h"
 #include "skybox.h"
 
+enum Scale
+{
+    LARGE = 0,
+    SMALL
+};
+
 class Cube
 {
   public:
     Cube(Shader *shader)
     {
         this->shader = shader;
+        this->cubeCenter = glm::vec3(0.0f, 0.0f, 0.0f);
+        this->movestep = 2.0f;
+        this->scalestep = glm::vec3(1.0f, 1.0f, 1.0f);
+        this->cubeScale = glm::vec3(1.0f, 1.0f, 1.0f);
     }
 
     void Draw(Skybox *skybox)
@@ -49,8 +59,9 @@ class Cube
         for (GLuint i = 0; i < 10; i++)
         {
             cubeModel = glm::mat4();
-            cubeModel = glm::translate(cubeModel, cubePositions[i]);
-            cubeModel = glm::translate(cubeModel, glm::vec3(0.0f, -3.0f, 0.0f));
+            cubeModel = glm::scale(cubeModel, this->cubeScale);
+            cubeModel = glm::translate(cubeModel, cubePositions[i] + this->cubeCenter);
+            // cubeModel = glm::translate(cubeModel, glm::vec3(0.0f, -3.0f, 0.0f));
             GLfloat angle = 20.0f * i;
             cubeModel = glm::rotate(cubeModel, angle, glm::vec3(1.0f, 0.3f, 0.5f));
             glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(cubeModel));
@@ -212,10 +223,59 @@ class Cube
         glUniform1i(glGetUniformLocation(this->shader->Program, "material.specular"), 1);
     }
 
+    void setCubeCenter(glm::vec3 cubeCenter)
+    {
+        this->cubeCenter = cubeCenter;
+    }
+
+    void moveCube(Movement direction)
+    {
+        if (direction == MOVELEFT)
+        {
+            cubeCenter.x -= this->movestep;
+        }
+        else if (direction == MOVERIGHT)
+        {
+            cubeCenter.x += this->movestep;
+        }
+        else if (direction == MOVEUP)
+        {
+            cubeCenter.y += this->movestep;
+        }
+        else if (direction == MOVEDONE)
+        {
+            cubeCenter.y -= this->movestep;
+        }
+        else if (direction == MOVEFRONT)
+        {
+            cubeCenter.z -= this->movestep;
+        }
+        else if (direction == MOVEBACK)
+        {
+            cubeCenter.z += this->movestep;
+        }
+    }
+
+    void scaleCube(Scale zoom)
+    {
+        if (zoom == LARGE)
+        {
+            this->cubeScale += scalestep;
+        }
+        else if (zoom == SMALL)
+        {
+            this->cubeScale -= scalestep;
+        }
+    }
+
   private:
     GLuint VAO, VBO;
     GLuint cubeTexture, cubeSpecularTexture;
     Shader *shader;
+    float movestep;
+    glm::vec3 cubeScale;
+    glm::vec3 scalestep;
+    glm::vec3 cubeCenter;
 };
 
 #endif

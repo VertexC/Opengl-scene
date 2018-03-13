@@ -5,28 +5,25 @@
 #include <vector>
 
 // GL Includes
-#include <GL/glew.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-
+#include "scene.h"
 // camera movement
-enum CameraMovement
+enum Movement
 {
-    FORWARD,
-    BACKWARD,
-    MOVELEFT,
-    MOVERIGHT
+    MOVELEFT = 0,
+    MOVERIGHT,
+    MOVEUP,
+    MOVEDONE,
+    MOVEFRONT,
+    MOVEBACK
 };
 
-
-enum CameraTurnAround{
-    TURNUP,
+enum CameraTurnAround
+{
+    TURNUP = 0,
     TURNDOWN,
     TURNLEFT,
     TURNRIGHT
 };
-
-
 
 // default parameter
 const GLfloat YAW = -90.0f;
@@ -51,7 +48,7 @@ class Camera
     GLfloat turnAroundSpeed;
     GLfloat zoom;
 
-    Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f), GLfloat yaw = YAW, GLfloat pitch = PITCH) 
+    Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f), GLfloat yaw = YAW, GLfloat pitch = PITCH)
         : front(glm::vec3(0.0f, 0.0f, -1.0f)), zoom(ZOOM), movementSpeed(MOVEMENTSPEED), turnAroundSpeed(TURNAROUNDSPEED)
     {
         this->position = position;
@@ -66,34 +63,36 @@ class Camera
         return glm::lookAt(this->position, this->position + this->front, this->up);
     }
 
-    void moveCamera(CameraMovement direction){
-        if(direction == FORWARD)
+    void moveCamera(Movement direction)
+    {
+        if (direction == MOVEFRONT)
             this->position += this->front * this->movementSpeed;
-        if(direction == BACKWARD)
+        if (direction == MOVEBACK)
             this->position -= this->front * this->movementSpeed;
-        if(direction == MOVELEFT)
-            this->position -= this->right * this->movementSpeed;
-        if(direction == MOVERIGHT)
+        if (direction == MOVELEFT)
             this->position += this->right * this->movementSpeed;
+        if (direction == MOVERIGHT)
+            this->position -= this->right * this->movementSpeed;
     }
 
-    void turnCamera(CameraTurnAround direction){
-        if(direction == TURNUP)
+    void turnCamera(CameraTurnAround direction)
+    {
+        if (direction == TURNUP)
             this->pitch += this->turnAroundSpeed;
-        if(direction == TURNDOWN)
+        if (direction == TURNDOWN)
             this->pitch -= this->turnAroundSpeed;
-        if(this->pitch > 89.0f)
+        if (this->pitch > 89.0f)
             this->pitch = 89.0f;
-        if(this->pitch < -89.0f)
-            this->pitch = -89.0f; 
+        if (this->pitch < -89.0f)
+            this->pitch = -89.0f;
 
-        if(direction == TURNLEFT)
-            this->yaw += this->turnAroundSpeed;
-        if(direction == TURNRIGHT)
+        if (direction == TURNLEFT)
             this->yaw -= this->turnAroundSpeed;
-        if(this->yaw < 0.0f)
+        if (direction == TURNRIGHT)
+            this->yaw += this->turnAroundSpeed;
+        if (this->yaw < 0.0f)
             this->yaw += 360.0f;
-        if(this->yaw > 360.0f)
+        if (this->yaw > 360.0f)
             this->yaw -= 360.0f;
         this->updateCameraVectors();
     }
@@ -110,6 +109,5 @@ class Camera
         this->up = glm::normalize(glm::cross(this->right, this->front));
     }
 };
-
 
 #endif

@@ -1,6 +1,8 @@
 #include <string.h>
 #include <iostream>
 #include "scene.h"
+#include "mycamera.h"
+#include "shader.h"
 #include "model.h"
 #include "skybox.h"
 #include "cube.h"
@@ -95,6 +97,31 @@ void keyboard(unsigned char key, int x, int y)
     case 's':
         camera.turnCamera(TURNDOWN);
         break;
+
+    case 'j':
+        cube->moveCube(MOVELEFT);
+        break;
+    case 'l':
+        cube->moveCube(MOVERIGHT);
+        break;
+    case 'i':
+        cube->moveCube(MOVEUP);
+        break;
+    case 'k':
+        cube->moveCube(MOVEDONE);
+        break;
+    case 'u':
+        cube->moveCube(MOVEFRONT);
+        break;
+    case 'o':
+        cube->moveCube(MOVEBACK);
+        break;
+    case ',':
+        cube->scaleCube(LARGE);
+        break;
+    case '.':
+        cube->scaleCube(SMALL);
+        break;
     }
 }
 
@@ -109,10 +136,10 @@ void specialkey(int key, int x, int y)
         camera.moveCamera(MOVERIGHT);
         break;
     case GLUT_KEY_UP:
-        camera.moveCamera(FORWARD);
+        camera.moveCamera(MOVEFRONT);
         break;
     case GLUT_KEY_DOWN:
-        camera.moveCamera(BACKWARD);
+        camera.moveCamera(MOVEBACK);
         break;
     }
 }
