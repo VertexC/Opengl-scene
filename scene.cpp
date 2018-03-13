@@ -174,7 +174,7 @@ int main(int argc, char **argv)
     glutInitContextProfile(GLUT_CORE_PROFILE);
     glutInitWindowPosition(300, 300);
     glutInitWindowSize(windowWidth, windowHeight);
-    glutCreateWindow("scene");
+    glutCreateWindow("Burining Boxes");
     glewExperimental = GL_TRUE;
     GLenum err = glewInit();
     if (err != GLEW_OK)
