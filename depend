@@ -83,20 +83,19 @@ scene.o: scene.cpp /usr/include/stdc-predef.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/sigset.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/GL/freeglut_ext.h /usr/include/GL/freeglut_ext.h shader.h \
- /usr/include/c++/5/fstream /usr/include/c++/5/bits/codecvt.h \
- /usr/include/c++/5/cstdio /usr/include/libio.h /usr/include/_G_config.h \
+ /usr/include/GL/freeglut_ext.h /usr/include/GL/freeglut_ext.h \
+ dep/soil/include/SOIL.h dep/assimp/include/assimp/Importer.hpp \
+ dep/assimp/include/assimp/types.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
- /usr/include/x86_64-linux-gnu/c++/5/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/5/bits/c++io.h \
- /usr/include/c++/5/bits/fstream.tcc /usr/include/c++/5/sstream \
- /usr/include/c++/5/bits/sstream.tcc mycamera.h /usr/include/c++/5/vector \
- /usr/include/c++/5/bits/stl_construct.h \
- /usr/include/c++/5/bits/stl_uninitialized.h \
- /usr/include/c++/5/bits/stl_vector.h \
- /usr/include/c++/5/bits/stl_bvector.h /usr/include/c++/5/bits/vector.tcc \
- dep/glm/glm.hpp dep/glm/detail/_fixes.hpp /usr/include/c++/5/cmath \
+ dep/assimp/include/assimp/defs.h dep/assimp/include/assimp/config.h \
+ dep/assimp/include/assimp/vector3.h /usr/include/c++/5/cmath \
  /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/x86_64-linux-gnu/bits/huge_val.h \
@@ -106,19 +105,35 @@ scene.o: scene.cpp /usr/include/stdc-predef.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/nan.h \
  /usr/include/x86_64-linux-gnu/bits/mathdef.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
- /usr/include/c++/5/climits \
- /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
- /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
- /usr/include/x86_64-linux-gnu/bits/local_lim.h \
- /usr/include/linux/limits.h \
- /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
- /usr/include/x86_64-linux-gnu/bits/xopen_lim.h /usr/include/c++/5/cfloat \
+ dep/assimp/include/assimp/vector2.h \
+ dep/assimp/include/assimp/./Compiler/pushpack1.h \
+ dep/assimp/include/assimp/./Compiler/poppack1.h \
+ dep/assimp/include/assimp/color4.h dep/assimp/include/assimp/matrix3x3.h \
+ dep/assimp/include/assimp/matrix4x4.h \
+ dep/assimp/include/assimp/quaternion.h /usr/include/c++/5/cstring \
+ dep/assimp/include/assimp/vector2.inl \
+ dep/assimp/include/assimp/vector3.inl \
+ dep/assimp/include/assimp/color4.inl \
+ dep/assimp/include/assimp/quaternion.inl \
+ dep/assimp/include/assimp/matrix3x3.inl /usr/include/c++/5/algorithm \
+ /usr/include/c++/5/utility /usr/include/c++/5/bits/stl_relops.h \
+ /usr/include/c++/5/bits/stl_algo.h /usr/include/c++/5/cstdlib \
+ /usr/include/c++/5/bits/algorithmfwd.h \
+ /usr/include/c++/5/bits/stl_heap.h /usr/include/c++/5/bits/stl_tempbuf.h \
+ /usr/include/c++/5/bits/stl_construct.h /usr/include/c++/5/limits \
+ dep/assimp/include/assimp/matrix4x4.inl \
+ dep/assimp/include/assimp/scene.h dep/assimp/include/assimp/texture.h \
+ dep/assimp/include/assimp/mesh.h dep/assimp/include/assimp/light.h \
+ dep/assimp/include/assimp/camera.h dep/assimp/include/assimp/material.h \
+ dep/assimp/include/assimp/material.inl dep/assimp/include/assimp/anim.h \
+ dep/assimp/include/assimp/metadata.h \
+ dep/assimp/include/assimp/postprocess.h dep/glm/glm.hpp \
+ dep/glm/detail/_fixes.hpp /usr/include/c++/5/climits \
+ /usr/include/c++/5/cfloat \
  /usr/lib/gcc/x86_64-linux-gnu/5/include/float.h \
- /usr/include/c++/5/limits /usr/include/c++/5/cassert \
- /usr/include/assert.h dep/glm/fwd.hpp dep/glm/detail/type_int.hpp \
- dep/glm/detail/setup.hpp /usr/include/c++/5/cstddef \
- dep/glm/detail/../simd/platform.h \
+ /usr/include/c++/5/cassert /usr/include/assert.h dep/glm/fwd.hpp \
+ dep/glm/detail/type_int.hpp dep/glm/detail/setup.hpp \
+ /usr/include/c++/5/cstddef dep/glm/detail/../simd/platform.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include/emmintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include/xmmintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include/mmintrin.h \
@@ -171,30 +186,15 @@ scene.o: scene.cpp /usr/include/stdc-predef.h /usr/include/string.h \
  dep/glm/detail/func_integer.hpp dep/glm/detail/func_integer.inl \
  dep/glm/gtc/matrix_transform.hpp dep/glm/gtc/../gtc/constants.hpp \
  dep/glm/gtc/../gtc/constants.inl dep/glm/gtc/matrix_transform.inl \
- dep/soil/include/SOIL.h dep/assimp/include/assimp/Importer.hpp \
- dep/assimp/include/assimp/types.h dep/assimp/include/assimp/defs.h \
- dep/assimp/include/assimp/config.h dep/assimp/include/assimp/vector3.h \
- dep/assimp/include/assimp/vector2.h \
- dep/assimp/include/assimp/./Compiler/pushpack1.h \
- dep/assimp/include/assimp/./Compiler/poppack1.h \
- dep/assimp/include/assimp/color4.h dep/assimp/include/assimp/matrix3x3.h \
- dep/assimp/include/assimp/matrix4x4.h \
- dep/assimp/include/assimp/quaternion.h /usr/include/c++/5/cstring \
- dep/assimp/include/assimp/vector2.inl \
- dep/assimp/include/assimp/vector3.inl \
- dep/assimp/include/assimp/color4.inl \
- dep/assimp/include/assimp/quaternion.inl \
- dep/assimp/include/assimp/matrix3x3.inl /usr/include/c++/5/algorithm \
- /usr/include/c++/5/utility /usr/include/c++/5/bits/stl_relops.h \
- /usr/include/c++/5/bits/stl_algo.h /usr/include/c++/5/cstdlib \
- /usr/include/c++/5/bits/algorithmfwd.h \
- /usr/include/c++/5/bits/stl_heap.h /usr/include/c++/5/bits/stl_tempbuf.h \
- dep/assimp/include/assimp/matrix4x4.inl \
- dep/assimp/include/assimp/scene.h dep/assimp/include/assimp/texture.h \
- dep/assimp/include/assimp/mesh.h dep/assimp/include/assimp/light.h \
- dep/assimp/include/assimp/camera.h dep/assimp/include/assimp/material.h \
- dep/assimp/include/assimp/material.inl dep/assimp/include/assimp/anim.h \
- dep/assimp/include/assimp/metadata.h \
- dep/assimp/include/assimp/postprocess.h dep/glm/gtc/type_ptr.hpp \
- dep/glm/gtc/../gtc/quaternion.hpp dep/glm/gtc/../gtc/quaternion.inl \
- dep/glm/gtc/type_ptr.inl model.h mesh.h skybox.h cube.h
+ dep/glm/gtc/type_ptr.hpp dep/glm/gtc/../gtc/quaternion.hpp \
+ dep/glm/gtc/../gtc/quaternion.inl dep/glm/gtc/type_ptr.inl mycamera.h \
+ /usr/include/c++/5/vector /usr/include/c++/5/bits/stl_uninitialized.h \
+ /usr/include/c++/5/bits/stl_vector.h \
+ /usr/include/c++/5/bits/stl_bvector.h /usr/include/c++/5/bits/vector.tcc \
+ shader.h /usr/include/c++/5/fstream /usr/include/c++/5/bits/codecvt.h \
+ /usr/include/c++/5/cstdio /usr/include/libio.h /usr/include/_G_config.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/c++io.h \
+ /usr/include/c++/5/bits/fstream.tcc /usr/include/c++/5/sstream \
+ /usr/include/c++/5/bits/sstream.tcc model.h mesh.h skybox.h cube.h

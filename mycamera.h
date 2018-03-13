@@ -26,7 +26,7 @@ enum CameraTurnAround
 };
 
 // default parameter
-const GLfloat YAW = -90.0f;
+const GLfloat YAW = 70.0f;
 const GLfloat PITCH = 0.0f;
 const GLfloat ZOOM = 45.0f;
 const GLfloat MOVEMENTSPEED = 1.0f;

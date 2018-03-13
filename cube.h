@@ -14,13 +14,15 @@ enum Scale
 class Cube
 {
   public:
+    glm::vec3 cubeScale;
+    glm::vec3 cubeCenter;
     Cube(Shader *shader)
     {
         this->shader = shader;
-        this->cubeCenter = glm::vec3(0.0f, 0.0f, 0.0f);
+        this->cubeCenter = glm::vec3(9.0f, -2.0f, 64.0f);
         this->movestep = 2.0f;
         this->scalestep = glm::vec3(1.0f, 1.0f, 1.0f);
-        this->cubeScale = glm::vec3(1.0f, 1.0f, 1.0f);
+        this->cubeScale = glm::vec3(2.0f, 2.0f, 2.0f);
     }
 
     void Draw(Skybox *skybox)
@@ -59,11 +61,10 @@ class Cube
         for (GLuint i = 0; i < 10; i++)
         {
             cubeModel = glm::mat4();
-            cubeModel = glm::scale(cubeModel, this->cubeScale);
             cubeModel = glm::translate(cubeModel, cubePositions[i] + this->cubeCenter);
-            // cubeModel = glm::translate(cubeModel, glm::vec3(0.0f, -3.0f, 0.0f));
             GLfloat angle = 20.0f * i;
             cubeModel = glm::rotate(cubeModel, angle, glm::vec3(1.0f, 0.3f, 0.5f));
+            cubeModel = glm::scale(cubeModel,(GLfloat)(10 - i) * this->cubeScale / 10.0f);
             glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(cubeModel));
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
@@ -143,10 +144,10 @@ class Cube
         this->shader->Use();
         // Positions of the point lights
         glm::vec3 pointLightPositions[] = {
-            glm::vec3(0.7f, 0.2f, 2.0f),
-            glm::vec3(2.3f, -3.3f, -4.0f),
-            glm::vec3(-4.0f, 2.0f, -12.0f),
-            glm::vec3(0.0f, 0.0f, -3.0f)};
+            glm::vec3(20.0f, -6.0f, 80.0f),
+            glm::vec3(-4.0f, -30.0f, -40.0f),
+            glm::vec3(10.0f, -2.0f, 64.0f),
+            glm::vec3(3.0f, 0.0f, 64.0f)};
 
         // Set material properties
         glUniform1f(glGetUniformLocation(this->shader->Program, "material.shininess"), 16.0f);
@@ -273,9 +274,7 @@ class Cube
     GLuint cubeTexture, cubeSpecularTexture;
     Shader *shader;
     float movestep;
-    glm::vec3 cubeScale;
     glm::vec3 scalestep;
-    glm::vec3 cubeCenter;
 };
 
 #endif

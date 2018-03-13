@@ -7,8 +7,8 @@
 #include "skybox.h"
 #include "cube.h"
 // window size
-GLint windowWidth = 512;
-GLint windowHeight = 512;
+GLint windowWidth = 800;
+GLint windowHeight = 600;
 float speed = 2000;
 
 // shader program
@@ -19,7 +19,7 @@ Shader *skyboxShader;
 Skybox *skybox;
 Cube *cube;
 // Init the camera object
-Camera camera(glm::vec3(-10.0f, 0.0f, 0.0f));
+Camera camera(glm::vec3(2.41841f, -0.174057f, 40.0417f));
 
 // texture
 GLuint containerTexture, containerSpecularTexture;
@@ -147,11 +147,17 @@ void specialkey(int key, int x, int y)
 void autoRotation(int value)
 {
     glutTimerFunc(speed, autoRotation, 0);
-    std::cout << camera.position.x << " "
+    std::cout << "===================================================" << std::endl;
+    std::cout << "camera position:" << camera.position.x << " "
               << camera.position.y << " "
               << camera.position.z << std::endl;
-    std::cout << camera.pitch << std::endl;
-    std::cout << camera.yaw << std::endl;
+    std::cout << "       pitch:" << camera.pitch << std::endl;
+    std::cout << "       yaw:" << camera.yaw << std::endl;
+    std::cout << "cube position:" << cube->cubeCenter.x << " "
+              << cube->cubeCenter.y << " "
+              << cube->cubeCenter.z << std::endl;
+    std::cout << "cube scale:" << cube->cubeScale.x << std ::endl;
+    std::cout << "===================================================" << std::endl;
 }
 
 int main(int argc, char **argv)
