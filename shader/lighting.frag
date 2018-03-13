@@ -30,17 +30,23 @@ out vec4 color;
 
 in vec3 FragPos;
 in vec3 Normal;
+in vec3 Position;
 in vec2 TexCoords;
 
 uniform vec3 viewPos;
 uniform Material material;
 uniform DirLight dirLight;
 uniform PointLight pointLights[NUM_POINT_LIGHT];
+uniform samplerCube skybox;
+uniform vec3 cameraPos;
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
 void main(){
+
+    float alphaSelf = 0.8f;
+    float alphaSkybox = 0.2f;
     vec3 norm = normalize(Normal);
     vec3 viewDir = normalize(viewPos - FragPos);
     
@@ -48,8 +54,13 @@ void main(){
     for(int i = 0; i < NUM_POINT_LIGHT; i++){
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
     }
+    vec4 colorSelf = vec4(result, 1.0);
 
-    color = vec4(result, 1.0);
+    vec3 I = normalize(Position - cameraPos);
+    vec3 R = reflect(I, normalize(Normal));
+    vec4 colorSkybox = texture(skybox, R);
+
+    color = colorSkybox * alphaSkybox + colorSelf * alphaSelf;
 }
 
 vec3 CalcDirLight(DirLight light, vec3 norm, vec3 viewDir){

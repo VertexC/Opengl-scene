@@ -127,6 +127,10 @@ class Skybox
         glBindVertexArray(0);
     }
 
+    GLuint getTexture(){
+        return this->textureID;
+    }
+
   private:
     vector<const GLchar *> texturesFaces;
     GLuint textureID;
