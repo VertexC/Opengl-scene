@@ -100,12 +100,19 @@ class Skybox
         // this->texturesFaces.push_back("./asset/skybox/skycube_tga/skyrender0005.tga");
         // this->texturesFaces.push_back("./asset/skybox/skycube_tga/skyrender0006.tga");
 
-        this->texturesFaces.push_back("./asset/skybox2/right.jpg");
-        this->texturesFaces.push_back("./asset/skybox2/left.jpg");
-        this->texturesFaces.push_back("./asset/skybox2/top.jpg");
-        this->texturesFaces.push_back("./asset/skybox2/bottom.jpg");
-        this->texturesFaces.push_back("./asset/skybox2/back.jpg");
-        this->texturesFaces.push_back("./asset/skybox2/front.jpg");
+        // this->texturesFaces.push_back("./asset/skybox2/right.jpg");
+        // this->texturesFaces.push_back("./asset/skybox2/left.jpg");
+        // this->texturesFaces.push_back("./asset/skybox2/top.jpg");
+        // this->texturesFaces.push_back("./asset/skybox2/bottom.jpg");
+        // this->texturesFaces.push_back("./asset/skybox2/back.jpg");
+        // this->texturesFaces.push_back("./asset/skybox2/front.jpg");
+
+        this->texturesFaces.push_back("./asset/hell/nec_hell/hell_ft.tga");
+        this->texturesFaces.push_back("./asset/hell/nec_hell/hell_bk.tga");
+        this->texturesFaces.push_back("./asset/hell/nec_hell/hell_up.tga");
+        this->texturesFaces.push_back("./asset/hell/nec_hell/hell_dn.tga");
+        this->texturesFaces.push_back("./asset/hell/nec_hell/hell_rt.tga");
+        this->texturesFaces.push_back("./asset/hell/nec_hell/hell_lf.tga");
         std::cout << "here4" << std::endl;
     }
 
