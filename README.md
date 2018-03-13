@@ -1,19 +1,41 @@
-##### Build Guide
+#### Build Guide
 ```bash
 make
 ./myscene
 ```
 
-##### Extra Library
+#### Keyboard Control
+- camera
+    - movement
+        - leftkey: move left
+        - rightkey: move right
+        - upkey: move up
+        - donekey: move down
+    - rotation
+        - a: turn left
+        - d: turn right
+        - w: turn up
+        - s: turn down
+- cube
+    - cubeCenter position
+        - j: move left
+        - l: move right
+        - i: move up
+        - k: move down
+    - cube Scale
+        - ,: scale up
+        - .: scale down
+
+#### Extra Library
 - glm: vector, mat 
 - SOIL: texture
 - assimp: model
 - openGL, glew, glut
 
-##### Scene Capture
+#### Scene Capture
 <img src=".\screenshot\myscene.png" width="50%">
 
-##### Used Features
+#### Used Features
 - Light
     - pointLight with attenuation
     - directLight 
@@ -26,7 +48,7 @@ make
   Let cube relect color of skybox
     
   <img src=".\screenshot\reflection.png" width="50%">
-    
+
 
 #### Reference
 [OpenGl Tutorial](https://learnopengl-cn.readthedocs.io/zh/latest/05%20Advanced%20Lighting/08%20Deferred%20Shading/)

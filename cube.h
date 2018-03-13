@@ -27,7 +27,7 @@ class Cube
 
     void Draw(Skybox *skybox)
     {
-        // Positions all containers
+        // positon of cube
         glm::vec3 cubePositions[] = {
             glm::vec3(0.0f, 0.0f, 0.0f),
             glm::vec3(2.0f, 5.0f, -15.0f),
@@ -40,12 +40,7 @@ class Cube
             glm::vec3(1.5f, 0.2f, -1.5f),
             glm::vec3(-1.3f, 1.0f, -1.5f)};
 
-        // Light attributes
-        glm::vec3 lightPos(0.0f, 1.0f, 2.0f);
-
-        // Use cooresponding shader when setting uniforms/drawing objects
         this->shader->Use();
-        // Get the uniform locations
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, this->cubeTexture);
         glActiveTexture(GL_TEXTURE1);
@@ -61,10 +56,10 @@ class Cube
         for (GLuint i = 0; i < 10; i++)
         {
             cubeModel = glm::mat4();
-            cubeModel = glm::translate(cubeModel, cubePositions[i] + this->cubeCenter);
             GLfloat angle = 20.0f * i;
+            cubeModel = glm::translate(cubeModel, cubePositions[i] + this->cubeCenter);
             cubeModel = glm::rotate(cubeModel, angle, glm::vec3(1.0f, 0.3f, 0.5f));
-            cubeModel = glm::scale(cubeModel,(GLfloat)(10 - i) * this->cubeScale / 10.0f);
+            cubeModel = glm::scale(cubeModel, (GLfloat)(10 - i) * this->cubeScale / 10.0f);
             glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(cubeModel));
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
@@ -117,7 +112,7 @@ class Cube
             -0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
             -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f};
 
-        // First, set the container's VAO (and VBO)
+        // set VAO, VBO
         glGenVertexArrays(1, &this->VAO);
         glGenBuffers(1, &this->VBO);
 
@@ -125,10 +120,10 @@ class Cube
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
         glBindVertexArray(this->VAO);
-        // Position attribute
+        // position
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)0);
         glEnableVertexAttribArray(0);
-        // Normal attribute
+        // normal
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(3 * sizeof(GLfloat)));
         glEnableVertexAttribArray(1);
         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(6 * sizeof(GLfloat)));
@@ -267,6 +262,9 @@ class Cube
         {
             this->cubeScale -= scalestep;
         }
+
+        if (this->cubeScale.x <= 0.0f)
+            this->cubeScale = glm::vec3(1.0f, 1.0f, 1.0f);
     }
 
   private:
