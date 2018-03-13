@@ -114,7 +114,13 @@ class Skybox
         this->texturesFaces.push_back("./asset/hell/nec_hell/hell_dn.tga");
         this->texturesFaces.push_back("./asset/hell/nec_hell/hell_rt.tga");
         this->texturesFaces.push_back("./asset/hell/nec_hell/hell_lf.tga");
-        std::cout << "here4" << std::endl;
+
+        // this->texturesFaces.push_back("./asset/moonblood/mp_blood/blood_ft.tga");
+        // this->texturesFaces.push_back("./asset/moonblood/mp_blood/blood_bk.tga");
+        // this->texturesFaces.push_back("./asset/moonblood/mp_blood/blood_up.tga");
+        // this->texturesFaces.push_back("./asset/moonblood/mp_blood/blood_dn.tga");
+        // this->texturesFaces.push_back("./asset/moonblood/mp_blood/blood_rt.tga");
+        // this->texturesFaces.push_back("./asset/moonblood/mp_blood/blood_lf.tga");
     }
 
     void Draw(Shader shader)
